@@ -1,0 +1,4 @@
+env/
+portfolioKey.json
+*__pycache__
+*.env
