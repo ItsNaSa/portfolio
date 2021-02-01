@@ -7,3 +7,10 @@
     pip install -r requirements.txt
     ```
 3. Activate the virtual environment
+    ```bash
+    {environment name}\Scripts\activate
+    ```
+4. Run using flask (Make sure .env is set)
+    ```bash
+    flask run
+    ```
