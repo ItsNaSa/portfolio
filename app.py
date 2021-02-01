@@ -20,10 +20,15 @@ db = firestore.client()
 def home():
     return "Welcome to my portfolio!!"
 
-@app.route("/addContact", methods=["GET", "POST"])
+@app.route("/listContact", methods = ["GET"])
+def listContact():
+    a = db.collection(u'contact').stream()
+    for x in a:
+        print(f'{x.id} => {x.to_dict()}')
+    return make_response(({"Unsuccessful": True}), 200)
+
+@app.route("/addContact", methods=["POST"])
 def addContact():
-    if request.method == "GET":
-        a = db.collection(u'contact').stream()
-        for x in a:
-            print(f'{x.id} => {x.to_dict()}')
-        return make_response(({"Unsuccessful": True}), 200)
+    contact_data = request.form.to_dict()
+    db.collection(u'contact').add(contact_data)
+    return make_response(({"success": True}), 201)
